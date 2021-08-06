@@ -60,5 +60,6 @@ const teacherSchema = new Schema(
 // });
 
 const Teacher = model("Teacher", teacherSchema);
+console.log('borrame')
 
 module.exports = Teacher;

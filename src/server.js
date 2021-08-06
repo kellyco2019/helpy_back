@@ -26,7 +26,8 @@ app.get('/', (req, res) => {
 
 // app.use("/", students);
 // app.use("/", teachers);
-// app.use("/", lessons);
+// app.use("/", lesson);
 app.listen(port, () => {
   console.log(`App runnig at http://localhost:${port}`);
+  console.log('borrame')
 });

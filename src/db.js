@@ -12,6 +12,7 @@ function connect() {
     })
     .catch((error) => {
       console.log("Connection wrong", error);
+      console.log('borrame')
     });
 }
 

@@ -38,5 +38,5 @@ const lessonSchema = new Schema(
 );
 
 const Lesson = model("Lesson", lessonSchema);
-
+console.log('borrame')
 module.exports = Lesson;

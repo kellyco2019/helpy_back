@@ -57,5 +57,5 @@ const studentSchema = new Schema(
 // });
 
 const Student = model("Student", studentSchema);
-
+console.log('borrame')
 module.exports = Student;
