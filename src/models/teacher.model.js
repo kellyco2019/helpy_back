@@ -30,11 +30,13 @@ const teacherSchema = new Schema(
     },
     password: { 
       type: String, 
+      required: false,
       match: [passwordRegExp, "Invalid password"] 
+
     },
     description: {
       type: String,
-      required: true,
+      required: false,
       minlength: [8, "Do a better description about you (minimum 10 words)"],
     },
     photo: {
@@ -46,6 +48,7 @@ const teacherSchema = new Schema(
     },
     lessons: {
       type: [{ type: Schema.Types.ObjectId, ref: "Lesson" }],
+      required: false,
     },
   },
   {

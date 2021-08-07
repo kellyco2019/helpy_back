@@ -3,9 +3,9 @@ const express = require("express");
 const cors = require("cors");
 //const morgan = require("morgan");
 const connect = require("./db");
-// const studentRouter = require("./routes/student.js");
-// const adminRouter = require("./routes/admin");
-// const challengeRouter = require("./routes/challenge");
+const studentRouter = require("./routes/student");
+const teacherRouter = require("./routes/teacher");
+const lessonsRouter = require("./routes/lessons");
 //const {verify} = require("./utils/mailer")
 
 const port = process.env.PORT || 8000;
@@ -24,9 +24,9 @@ app.get('/', (req, res) => {
   console.log(req)
 })
 
-// app.use("/", students);
-// app.use("/", teachers);
-// app.use("/", lessons);
+app.use("/student", studentRouter);
+app.use("/teacher", teacherRouter);
+app.use("/lessons", lessonsRouter);
 app.listen(port, () => {
   console.log(`App runnig at http://localhost:${port}`);
 });

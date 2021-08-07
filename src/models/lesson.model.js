@@ -19,18 +19,24 @@ const lessonSchema = new Schema(
       type: [String], 
       required: [true, "The field is required"] 
     },
+    
     video: { 
       type: [String], 
       required: [true, "The field is required"] 
     },
+
     time: { 
       type: Number, 
       required: [true, "The field is required"] 
     },
+
     tags: { type: [String],
     required: [false, "The field is required"] 
     },
-    //reservations: [{ type: Schema.Types.ObjectId, ref: "Reservation" }],
+
+    comments: { type: [String],
+      required: [false, "The field is required"] 
+      },
   },
   {
     timeStamps: true,
