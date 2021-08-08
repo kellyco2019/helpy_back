@@ -8,9 +8,7 @@ module.exports = {
     try {
       const { body } = req;
       const { userId } = req.params;  
-      //toca con toquen
       const teacher = await Teacher.findById(userId)
-      console.log("teacher", teacher )
       if (!teacher) {
         throw new Error("error en el controlador");
       }
@@ -25,11 +23,19 @@ module.exports = {
     }
   },
 
-   //mostrar todas GET lessons de todos
-   async showAll(req, res) {
+ //mostrar todas GET lessons de todos//filtro categoria 
+  async showAll(req, res) {
+    const { category } = req.query;
     try {
-      const lesson = await Lesson.find();
-      res.status(201).json(lesson);
+      let lessons = "";
+      if (category) {
+        lessons = await Lesson.find({   
+          category,
+        });
+      } else {
+        lessons = await Lesson.find();
+      }
+      res.status(200).json(lessons);
     } catch (err) {
       res.status(400).json({ message: err.message });
     }

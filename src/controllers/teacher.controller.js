@@ -52,7 +52,6 @@ async list(req, res) {
       res.status(201).json(teacher);
     } catch (err) {
       res.status(400).json({ message: err.message });
-      console.log({ message: err.message });
     }
   },
 //show GET see profile
@@ -79,7 +78,6 @@ async update(req, res) {
       res.status(200).json(profile);
     } catch (err) {
       res.status(400).json({ message: err.message });
-      console.dir(err.message);
     }
   },
 //update PUT photoProfile
@@ -89,7 +87,7 @@ async photoProfile(req, res) {
     const { userId } = req.params;
   
     if (body.photo.length === 0) {
-      console.log(body.photo)
+
       body.photo[0] =
         "https://res.cloudinary.com/evollve-sas/image/upload/v1627351292/roomatch/166-1666981_silhouette-unknown-people-hd-png-download_gnkzz1.jpg";
     }
@@ -115,7 +113,6 @@ async photoProfile(req, res) {
       res.status(200).json({message: 'profile deleted' });
     } catch (err) {
       res.status(400).json({ message: err.message });
-      console.log({ message: err.message });
     }
   },
 };
