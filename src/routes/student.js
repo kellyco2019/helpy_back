@@ -3,14 +3,14 @@ const studentController = require("../controllers/student.controller");
 const { auth } = require("../utils/middlewares");
 // const { formData } = require("../utils/formData");
 
-router.route("/signup").post(studentController.signup);
-router.route("/signin").post(studentController.signin);
-router.route("/").get(auth, studentController.list);
-router.route("/:userId").get(auth, studentController.show);
-router.route("/:userId").put(auth, studentController.update);
+router.route("/signup").post(studentController.signup);//ok
+router.route("/signin").post(studentController.signin);//ok
+router.route("/").get(studentController.list);//ok
+router.route("/:userId").get( studentController.show);//ok
+router.route("/:userId").put(auth, studentController.update);//ok
 router.route("/updatePhoto/:userId").put(auth, 
     //formData, 
-    studentController.photoProfile);
-router.route("/:userId").delete(auth, studentController.destroy);
+    studentController.photoProfile);//ok
+router.route("/:userId").delete(auth, studentController.destroy);//ok
 
 module.exports = router;

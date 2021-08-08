@@ -4,7 +4,7 @@ const lessonSchema = new Schema(
   {
     title: { 
       type: String, 
-      required: [false, "The field is required"] 
+      required: [true, "The field is required"] 
     },
     teacher: {
       type: Schema.Types.ObjectId,
@@ -22,18 +22,12 @@ const lessonSchema = new Schema(
         "https://res.cloudinary.com/evollve-sas/image/upload/v1627351292/roomatch/166-1666981_silhouette-unknown-people-hd-png-download_gnkzz1.jpg",
       ],
     },
-    
-    video: { 
-      type: [String], 
-      required: [false, "The field is required"] 
-    },
-
     time: { 
       type: Number, 
       required: [false, "The field is required"] 
     },
 
-    tags: { type: [String],
+    category: { type: [String],
     required: [false, "The field is required"] 
     },
 

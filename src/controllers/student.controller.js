@@ -43,7 +43,7 @@ module.exports = {
         process.env.SECRET, 
       { expiresIn: 60 * 60 * 24 * 365,});
 
-      res.status(201).json({token});
+      res.status(201).json({token ,student});
     } catch (error) {
       res.status(400).json({ message: error.message });
     }
@@ -59,7 +59,7 @@ module.exports = {
   //show GET see profile 
   async show(req, res) {
     try {
-      const { userId , body } = req;
+      const { userId } = req.params;
       const profile = await Student.findById(userId);
       res.status(200).json(profile);
     } catch (error) {
@@ -106,6 +106,7 @@ async photoProfile(req, res) {
   //delete DELETE profile 
   async destroy(req, res) {
     try {
+      const { body } = req; 
       const { userId } = req.params;
       const student = await Student.findByIdAndDelete(userId);
       res.status(200).json({message: 'profile deleted' });
