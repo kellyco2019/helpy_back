@@ -6,8 +6,8 @@ const { auth } = require("../utils/middlewares");
 router.route("/teacherProfile/:userId").post( auth, 
     //formData, 
     lessonController.create);//ok esto ya esta, crea la publicacion con el teacher
-//router.route("/").get(lessonController.showAll);
-router.route("/teacher/").get(
+router.route("/").get(lessonController.showAll);
+router.route("/teacher/:userId").get(
         //auth, 
         lessonController.list);//ok
 router.route("/lesson/:lessonId").get(lessonController.show);//ok

@@ -38,7 +38,8 @@ module.exports = {
         process.env.SECRET, {
         expiresIn: 60 * 60 * 24 * 365
       });
-      res.status(201).json({ token });
+      res.status(201).json({ teacher, token });
+      lesson.teacher.push(teacher.username);
     } catch (err) {
       res.status(400).json({ message: err.message });
       console.log({ message: err.message });
@@ -88,7 +89,7 @@ async photoProfile(req, res) {
     const { userId } = req.params;
   
     if (body.photo.length === 0) {
-      //console.log(body.photo)
+      console.log(body.photo)
       body.photo[0] =
         "https://res.cloudinary.com/evollve-sas/image/upload/v1627351292/roomatch/166-1666981_silhouette-unknown-people-hd-png-download_gnkzz1.jpg";
     }

@@ -6,20 +6,18 @@ module.exports = {
 
   async create(req, res) {
     try {
-      const { userId, body } = req.params;
-      console.log("body", body )
-      console.log("userID", userId )  
+      const { body } = req;
+      const { userId } = req.params;  
       //toca con toquen
-      const teacher = await Teacher.findById(userId);
+      const teacher = await Teacher.findById(userId)
       console.log("teacher", teacher )
       if (!teacher) {
         throw new Error("error en el controlador");
       }
-      const lesson = await Lesson.create({ ...body, 
-       userId 
+      const lesson = await Lesson.create({ ...body,
+      teacher: userId
       });
       teacher.lessons.push(lesson._id);
-
      await teacher.save({ validateBeforeSave: false });
       res.status(201).json(lesson);
     } catch (error) {
@@ -28,36 +26,26 @@ module.exports = {
   },
 
    //mostrar todas GET lessons de todos
-  // async showAll(req, res) {
-  //   const { tags } = req.query;
-  //   try {
-  //     let ads = "";
-  //     if (tags) {
-  //       ads = await Lesson.find({
-  //         _id: { $nin: reservedAdsIds },
-  //         city,
-  //       });
-  //     } else {
-  //       ads = await Advertisement.find({
-  //         _id: { $nin: reservedAdsIds },
-  //       });
-  //     }
-  //     res.status(200).json(ads);
-  //   } catch (err) {
-  //     res.status(400).json({ message: err.message });
-  //   }
-  // },
+   async showAll(req, res) {
+    try {
+      const lesson = await Lesson.find();
+      res.status(201).json(lesson);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  },
 
   //list GET by teacher 
   async list(req, res) {
     try {
-      const { userId } = req;
+      const { userId } = req.params;
       const lesson = await Lesson.find({ teacher: userId });
       res.status(201).json(lesson);
     } catch (err) {
       res.status(400).json({ message: err.message });
     }
   },
+  
   //show GET see one lesson 
 async show(req, res) {
   try {
