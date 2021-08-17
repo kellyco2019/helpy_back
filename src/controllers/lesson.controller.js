@@ -6,8 +6,7 @@ module.exports = {
 
   async create(req, res) {
     try {
-      const { body } = req;
-      const { userId } = req.params;  
+      const { userId , body } = req;
       const teacher = await Teacher.findById(userId)
       if (!teacher) {
         throw new Error("error en el controlador");
@@ -25,6 +24,7 @@ module.exports = {
 
  //mostrar todas GET lessons de todos//filtro categoria 
   async showAll(req, res) {
+   
     const { category } = req.query;
     try {
       let lessons = "";
@@ -43,6 +43,7 @@ module.exports = {
 
   //list GET by teacher 
   async list(req, res) {
+   
     try {
       const { userId } = req.params;
       const lesson = await Lesson.find({ teacher: userId });
@@ -51,11 +52,23 @@ module.exports = {
       res.status(400).json({ message: err.message });
     }
   },
+
+  //list all no filters
+  async listAll(req, res) {
+    try {
+      const { body } = req;
+      const lesson = await Lesson.find();
+      res.status(201).json(lesson);
+    } catch (err) {
+      res.status(400).json({ message: err.message });
+    }
+  },
   
   //show GET see one lesson 
 async show(req, res) {
+  
   try {
-    const { lessonId } = req.params;
+    const { lessonId } = req;
     const lesson = await Lesson.findById(lessonId)
     .populate("Teacher")
     res.status(200).json(lesson);

@@ -27,6 +27,7 @@ module.exports = {
     try {
       const { password, email } = req.body;
       const teacher = await Teacher.findOne({ email });
+     
       if (!teacher) {
         throw new Error("Invalid email or password2");
       }
@@ -38,8 +39,8 @@ module.exports = {
         process.env.SECRET, {
         expiresIn: 60 * 60 * 24 * 365
       });
-      res.status(201).json({ teacher, token });
-      lesson.teacher.push(teacher.username);
+      res.status(201).json({ teacher , token });
+   
     } catch (err) {
       res.status(400).json({ message: err.message });
       console.log({ message: err.message });
@@ -57,7 +58,7 @@ async list(req, res) {
 //show GET see profile
 async show(req, res) {
     try {
-      const { userId } = req.params;
+      const { userId , body } = req;
       //const { params: { userId }, body } = req;
       const profile = await Teacher.findById(userId);
       res.status(200).json(profile);
@@ -65,6 +66,9 @@ async show(req, res) {
       res.status(404).json({ message: error.message });
     }
   },
+
+
+
 //update PUT Profile
 async update(req, res) {
     try {
