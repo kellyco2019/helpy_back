@@ -68,7 +68,7 @@ module.exports = {
 async show(req, res) {
   
   try {
-    const { lessonId } = req.params;
+    const { lessonId } = req;
     const lesson = await Lesson.findById(lessonId)
     .populate("Teacher")
     res.status(200).json(lesson);
