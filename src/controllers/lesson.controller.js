@@ -45,13 +45,14 @@ module.exports = {
   async list(req, res) {
    
     try {
-      const { userId } = req.params;
+      const { userId } = req;
       const lesson = await Lesson.find({ teacher: userId });
       res.status(201).json(lesson);
     } catch (err) {
       res.status(400).json({ message: err.message });
     }
   },
+
 
   //list all no filters
   async listAll(req, res) {
@@ -68,7 +69,7 @@ module.exports = {
 async show(req, res) {
   
   try {
-    const { lessonId } = req;
+    const { lessonId } = req.params;
     const lesson = await Lesson.findById(lessonId)
     .populate("Teacher")
     res.status(200).json(lesson);
