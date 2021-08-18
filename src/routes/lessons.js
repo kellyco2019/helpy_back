@@ -8,10 +8,7 @@ router.route("/teacherProfile/").post(
     //formData, 
     lessonController.create);//ok esto ya esta, crea la publicacion con el teacher
 router.route("/").get(lessonController.showAll);
-
-router.route("/teacher/:userId").get(
-        //auth, 
-        lessonController.list);//ok
+router.route("/teacher/").get(auth, lessonController.list);//ok una lesson por profe     
 router.route("/lesson/:lessonId").get(lessonController.show);//ok
 router.route("/home").get(lessonController.listAll);
 router.route("/").put(
