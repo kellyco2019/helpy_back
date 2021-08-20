@@ -4,7 +4,7 @@ const lessonSchema = new Schema(
   {
     title: { 
       type: String, 
-      required: [true, "The field is required"] 
+      required: [false, "The field is required"] 
     },
     teacher: {
       type: Schema.Types.ObjectId,
@@ -15,9 +15,9 @@ const lessonSchema = new Schema(
       type: String, 
       required: [false, "The field is required"] 
     },
-      photo: {
-      type: [String],
-      required: false,
+    photo: {
+    type: [String],
+    required: false,
     },
     time: { 
       type: Number, 

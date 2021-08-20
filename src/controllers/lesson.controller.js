@@ -15,10 +15,36 @@ module.exports = {
       teacher: userId
       });
       teacher.lessons.push(lesson._id);
+      //req.body["photo"].push(res.secure_url);
      await teacher.save({ validateBeforeSave: false });
       res.status(201).json(lesson);
     } catch (error) {
       res.status(400).json({ message: error.message });
+    }
+  },
+
+  async createPicture(req, res) {
+    try {
+      const { userId , body } = req;
+console.log('quien eres?', body)
+      if (body.photo.length === 0) {
+        body.photo[0] =
+          "https://res.cloudinary.com/evollve-sas/image/upload/v1629224085/12603152173156694431_pfdaxv.jpg";
+      }
+      const teacher = await Teacher.findById(userId)
+      if (!teacher) {
+        throw new Error("error en el controlador");
+      }
+      const photo = await Lesson.create({
+      teacher: userId,
+      photo: body.photo[0],
+      });
+      teacher.lessons.push(photo);
+     await teacher.save({ validateBeforeSave: false });
+      res.status(201).json(photo);
+    } catch (error) {
+      res.status(400).json({ message: error.message });
+      //console.log(error)
     }
   },
 
