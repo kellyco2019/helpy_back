@@ -2,6 +2,7 @@ const Busboy = require("busboy");
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
+
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
@@ -16,7 +17,7 @@ exports.formData = (req, res, next) => {
   let uploadingCount = 0;
 
   function done() {
-    if (uploadingFile) return;
+    if (uploadingFile) return;//este return es no haga nada
     if (uploadingCount > 0) return;
     next();
   }
@@ -25,22 +26,23 @@ exports.formData = (req, res, next) => {
     req.body[key] = value;
   });
 
-  req.body.photos = [];
+
 
   busboy.on("file", (key, file) => {
     uploadingFile = true;
     uploadingCount++;
     const stream = cloudinary.uploader.upload_stream(
       {
-        upload_preset: "roomatch_proyect",
+        upload_preset: "proyectoIndividual",
       },
       (err, res) => {
         if (err) {
           throw new Error("invalid image");
         }
 
-        req.body["photos"].push(res.secure_url);
-
+        req.body[key]= res.secure_url;
+      
+        //req.body["photos"].push(res.secure_url);
         uploadingFile = false;
         uploadingCount--;
         done();
