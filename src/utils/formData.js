@@ -2,6 +2,7 @@ const Busboy = require("busboy");
 const cloudinary = require("cloudinary").v2;
 
 cloudinary.config({
+
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
@@ -25,7 +26,7 @@ exports.formData = (req, res, next) => {
     req.body[key] = value;
   });
 
-  req.body.photo = [];
+
 
   busboy.on("file", (key, file) => {
     uploadingFile = true;
@@ -39,7 +40,7 @@ exports.formData = (req, res, next) => {
           throw new Error("invalid image");
         }
 
-        req.body['photo']= res.secure_url;
+        req.body[key]= res.secure_url;
       
         //req.body["photos"].push(res.secure_url);
         uploadingFile = false;

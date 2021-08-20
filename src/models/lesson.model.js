@@ -15,8 +15,8 @@ const lessonSchema = new Schema(
       type: String, 
       required: [false, "The field is required"] 
     },
-    photo: {
-    type: [String],
+    image: {
+    type: String,
     required: false,
     },
     time: { 
