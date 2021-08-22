@@ -7,12 +7,17 @@ module.exports = {
   async create(req, res) {
     try {
       const { userId , body } = req;
+      // if (body.photo.length === 0) {
+      //   body.photo[0] =
+      //     "https://res.cloudinary.com/evollve-sas/image/upload/v1629224085/12603152173156694431_pfdaxv.jpg";
+      // }
       const teacher = await Teacher.findById(userId)
       if (!teacher) {
         throw new Error("error en el controlador");
       }
       const lesson = await Lesson.create({ ...body,
       teacher: userId
+      //photo: body.photo[0],
       });
       teacher.lessons.push(lesson._id);
      await teacher.save({ validateBeforeSave: false });
@@ -21,6 +26,30 @@ module.exports = {
       res.status(400).json({ message: error.message });
     }
   },
+
+  // async createPicture(req, res) {
+  //   try {
+  //     const { userId , body } = req;
+  //     if (body.photo.length === 0) {
+  //       body.photo[0] =
+  //         "https://res.cloudinary.com/evollve-sas/image/upload/v1629224085/12603152173156694431_pfdaxv.jpg";
+  //     }
+  //     const teacher = await Teacher.findById(userId)
+  //     if (!teacher) {
+  //       throw new Error("error en el controlador");
+  //     }
+  //     const photo = await Lesson.create({
+  //     teacher: userId,
+  //     photo: body.photo[0],
+  //     });
+  //     teacher.lessons.push(photo);
+  //    await teacher.save({ validateBeforeSave: false });
+  //     res.status(201).json(photo);
+  //   } catch (error) {
+  //     res.status(400).json({ message: error.message });
+  //     //console.log(error)
+  //   }
+  // },
 
  //mostrar todas GET lessons de todos//filtro categoria 
   async showAll(req, res) {
@@ -45,7 +74,7 @@ module.exports = {
   async list(req, res) {
    
     try {
-      const { userId } = req.params;
+      const { userId } = req;
       const lesson = await Lesson.find({ teacher: userId });
       res.status(201).json(lesson);
     } catch (err) {

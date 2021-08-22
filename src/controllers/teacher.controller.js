@@ -58,7 +58,7 @@ async list(req, res) {
 //show GET see profile
 async show(req, res) {
     try {
-      const { userId } = req.params;
+      const { userId , body } = req;
       //const { params: { userId }, body } = req;
       const profile = await Teacher.findById(userId);
       res.status(200).json(profile);
@@ -66,6 +66,7 @@ async show(req, res) {
       res.status(404).json({ message: error.message });
     }
   },
+
 //update PUT Profile
 async update(req, res) {
     try {

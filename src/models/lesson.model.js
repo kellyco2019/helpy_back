@@ -4,24 +4,28 @@ const lessonSchema = new Schema(
   {
     title: { 
       type: String, 
-      required: [true, "The field is required"] 
+      required: [false, "The field is required"] 
     },
     teacher: {
       type: Schema.Types.ObjectId,
       ref: "Teacher",
       required: [false, "you should be logged to create a lesson"]
     },
+    member: {  type: String, 
+      required: [false, "The field is required"] 
+    },
     description: { 
       type: String, 
       required: [false, "The field is required"] 
     },
-      photo: {
-      type: [String],
-      required: false,
-      default: [
-        "https://upload.wikimedia.org/wikipedia/commons/e/eb/Ash_Tree_-_geograph.org.uk_-_590710.jpg",
-      ],
+    image: {
+    type: String,
+    required: false,
     },
+    video: {
+      type: String,
+      required: false,
+      },
     time: { 
       type: Number, 
       required: [false, "The field is required"] 

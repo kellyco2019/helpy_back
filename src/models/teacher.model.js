@@ -39,12 +39,11 @@ const teacherSchema = new Schema(
       required: false,
       minlength: [8, "Do a better description about you (minimum 10 words)"],
     },
-    photo: {
-      type: [String],
+    image: {
+      type: String,
       required: false,
-      default: [
-        "https://res.cloudinary.com/evollve-sas/image/upload/v1627351292/roomatch/166-1666981_silhouette-unknown-people-hd-png-download_gnkzz1.jpg",
-      ],
+      default: 
+        "https://res.cloudinary.com/evollve-sas/image/upload/v1629238979/12590873286621913100_lsijjo.jpg"
     },
     lessons: {
       type: [{ type: Schema.Types.ObjectId, ref: "Lesson" }],
