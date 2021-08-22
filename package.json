@@ -6,6 +6,10 @@
   "repository": "https://github.com/kellyco2019/helpy_back.git",
   "author": "kellycora <kellyc@evollve.co>",
   "license": "MIT",
+  "engines": {
+    "node": "14.17.0",
+    "yarn": "1.22.10"
+  } ,
   "scripts": {
     "start": "node src/server.js",
     "dev": "nodemon src/server.js"
