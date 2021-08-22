@@ -34,10 +34,13 @@ exports.formData = (req, res, next) => {
     const stream = cloudinary.uploader.upload_stream(
       {
         upload_preset: "proyectoIndividual",
+        resource_type:'auto'
       },
       (err, res) => {
         if (err) {
+          console.log(err)
           throw new Error("invalid image");
+          
         }
 
         req.body[key]= res.secure_url;
