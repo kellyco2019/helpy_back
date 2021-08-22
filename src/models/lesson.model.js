@@ -19,6 +19,10 @@ const lessonSchema = new Schema(
     type: String,
     required: false,
     },
+    video: {
+      type: String,
+      required: false,
+      },
     time: { 
       type: Number, 
       required: [false, "The field is required"] 
