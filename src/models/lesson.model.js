@@ -11,6 +11,9 @@ const lessonSchema = new Schema(
       ref: "Teacher",
       required: [false, "you should be logged to create a lesson"]
     },
+    member: {  type: String, 
+      required: [false, "The field is required"] 
+    },
     description: { 
       type: String, 
       required: [false, "The field is required"] 
