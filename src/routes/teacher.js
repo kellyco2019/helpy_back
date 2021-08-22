@@ -3,7 +3,6 @@ const teacherController = require("../controllers/teacher.controller");
 const { auth } = require("../utils/middlewares");
 // const { formData } = require("../utils/formData");
 
-
 router.route("/signup").post(teacherController.signup);//ok
 router.route("/signin").post(teacherController.signin);//ok
 //router.route("/teachers").get(teacherController.list);//ok

@@ -82,7 +82,6 @@ module.exports = {
     }
   },
 
-
   //list all no filters
   async listAll(req, res) {
     try {

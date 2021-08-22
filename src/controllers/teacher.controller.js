@@ -67,8 +67,6 @@ async show(req, res) {
     }
   },
 
-
-
 //update PUT Profile
 async update(req, res) {
     try {
