@@ -15,8 +15,9 @@ router.route("/").get(lessonController.showAll);
 router.route("/teacher/").get(auth, lessonController.list);//ok una lesson por profe     
 router.route("/lesson/:lessonId").get(lessonController.show);//ok
 router.route("/home").get(lessonController.listAll);
-router.route("/").put(
+router.route("/:lessonId").put(
     auth, 
+    formData,
     lessonController.update);//ok
 //PUT create comments and starts // student
 // router.route("/lesson/:lessonId").put(auth, lessonController.updateComment);

@@ -109,7 +109,9 @@ async show(req, res) {
  //update PUT lesson()
   async update(req, res) {
     try {
-      const { params: { lessonId }, body  } = req;
+      const { lessonId } = req.params;
+      const { body } = req; 
+     
       const lesson = await Lesson.findByIdAndUpdate(lessonId, body, {
         new: true,
       });
